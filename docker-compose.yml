@@ -9,7 +9,8 @@ services:
       - ./modules:/usr/app/src/modules
       - secrets:/usr/app/src/config
     depends_on:
-      - mysql  # Ensure the mysql service starts before python-app
+      mysql:
+        condition: service_healthy  # Ensure the mysql service is healthy before starting python-app
     command: python -u ./main.py
 
   mysql:
@@ -19,8 +20,14 @@ services:
     volumes:
       - secrets:/usr/app/src/config  # Mounting the secrets directory
       - ./mysql-init:/docker-entrypoint-initdb.d
+      - ./mysql-init/my.cnf:/etc/mysql/conf.d/my.cnf:ro
     ports:
       - "3307:3307"  # Expose MySQL port
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   secrets:

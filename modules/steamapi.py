@@ -33,9 +33,12 @@ def get_match_data(matchSeqId) -> dict:
 # If the game started in the last 2 hrs, we insert it into the db + return the match data
 def get_most_recent_match(steamid) -> Match:
     matchHistory = get_match_history(steamid)
-    if time.time() - (60*60*48) <= matchHistory["start_time"] and len(mysql.select_db(f"SELECT id FROM matches WHERE id = {matchHistory['match_id']}")) == 0:
-        match_data = Match(get_match_data(matchHistory["match_seq_num"]))
-        return match_data
+    if matchHistory and isinstance(matchHistory,dict):
+        if time.time() - (60*60*48) <= matchHistory["start_time"] and len(mysql.select_db(f"SELECT id FROM matches WHERE id = {matchHistory['match_id']}")) == 0:
+            match_data = Match(get_match_data(matchHistory["match_seq_num"]))
+            return match_data
+        else:
+            return False
     else:
         return False
 

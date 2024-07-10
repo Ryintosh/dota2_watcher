@@ -70,7 +70,6 @@ def insert_match_into_db(match_data):
         match_data.match_seq_num, match_data.tower_status_radiant, match_data.tower_status_dire, match_data.barracks_status_radiant,
         match_data.barracks_status_dire, match_data.lobby_type, match_data.leagueid, match_data.game_mode, match_data.radiant_score, match_data.dire_score
     )]
-    print(value)
     db_cursor.executemany(query,value)
     mydb.commit()
     
