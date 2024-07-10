@@ -1,5 +1,5 @@
 # Configuration and Secret Management
-You will need five files in this directory:
+You will need five files in a new directory named /config:
 - webhooks.json
 - database.json
 - keys.json
