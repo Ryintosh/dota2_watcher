@@ -10,9 +10,8 @@ import modules.imagegenerator as ig
 
 def main():
     mysql.populatedb()
-    listOfFriendSteamIds = secrets.load_secret_config("players")["STEAM_IDS"]
     while True:
-        for steamId in listOfFriendSteamIds:
+        for steamId in secrets.load_secret_config("players")["STEAM_IDS"]:
             matchData = steam.get_most_recent_match(steamId)
             if matchData:
                 print("game found!")
