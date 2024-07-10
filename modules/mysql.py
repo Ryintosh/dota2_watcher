@@ -139,16 +139,4 @@ def insert_match_into_db(match_data):
         WHERE id = {match_data.match_id}
         """
 
-
-    # Retrieve the highest ID from match_players table
-    highest_id = select_db("SELECT MAX(id) FROM match_players")
-    highest_id_value = highest_id[0][0]
-
-    # Generate a tuple containing values from highest_id - 10 to highest_id
-    values = tuple(range(highest_id_value - 9, highest_id_value + 1))
-    print(values)
-    # Execute the update operation
-    #db_cursor.execute(query, values)
-    #mydb.commit()
-
     db_cursor.close()
