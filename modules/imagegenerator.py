@@ -92,11 +92,14 @@ def create_image(match_summary):
             items_image(player.item_neutral,heroIconLocation)
 
             # Setting Networth and KDA
-            heroIconLocation = (heroIconLocation[0]+item_picture_size[0]+30, heroIconLocation[1]-(item_picture_size[1]/4))
-            draw.text(heroIconLocation, f'{player.kills}/{player.deaths}/{player.assists}', font=text_font, fill=title_color)
+            heroIconLocation = (heroIconLocation[0]+item_picture_size[0]+30, heroIconLocation[1]-(item_picture_size[1]/2))
+            draw.text(heroIconLocation, f'KDA: {player.kills}/{player.deaths}/{player.assists}', font=text_font, fill=title_color)
             heroIconLocation = (heroIconLocation[0], heroIconLocation[1]+ (item_picture_size[1]/2))
-            draw.text(heroIconLocation, f'{player.net_worth} gold', font=text_font, fill=title_color)
-            
+            draw.text(heroIconLocation, f'NETWORTH: {player.net_worth}', font=text_font, fill=title_color)
+            heroIconLocation = (heroIconLocation[0], heroIconLocation[1]+ (item_picture_size[1]/2))
+            draw.text(heroIconLocation, f'HERO DAMAGE: {player.hero_damage}', font=text_font, fill=title_color)            
+            heroIconLocation = (heroIconLocation[0], heroIconLocation[1]+ (item_picture_size[1]/2))
+            draw.text(heroIconLocation, f'LAST HITS / DENIES: {player.last_hits}/{player.denies}', font=text_font, fill=title_color)            
 
             radianty += 5
         else:
@@ -137,10 +140,14 @@ def create_image(match_summary):
             items_image(player.item_neutral,heroIconLocation)
 
             # Setting Networth and KDA
-            heroIconLocation = (heroIconLocation[0] - 30, heroIconLocation[1] - 9)
-            draw.text(((heroIconLocation[0])-draw.textlength(f'{player.kills}/{player.deaths}/{player.assists}',font=text_font), heroIconLocation[1]), f'{player.kills}/{player.deaths}/{player.assists}', font=text_font, fill=title_color)
-            heroIconLocation = (heroIconLocation[0], heroIconLocation[1] + 18)
-            draw.text(((heroIconLocation[0])-draw.textlength(f'{player.net_worth} gold',font=text_font), heroIconLocation[1]), f'{player.net_worth} gold', font=text_font, fill=title_color)
+            heroIconLocation = (heroIconLocation[0] - 30, heroIconLocation[1]-(item_picture_size[1]/2))
+            draw.text(((heroIconLocation[0])-draw.textlength(f'KDA: {player.kills}/{player.deaths}/{player.assists}',font=text_font), heroIconLocation[1]), f'KDA: {player.kills}/{player.deaths}/{player.assists}', font=text_font, fill=title_color)
+            heroIconLocation = (heroIconLocation[0], heroIconLocation[1]+ (item_picture_size[1]/2))
+            draw.text(((heroIconLocation[0])-draw.textlength(f'NETWORTH: {player.net_worth}',font=text_font), heroIconLocation[1]), f'NETWORTH: {player.net_worth}', font=text_font, fill=title_color)
+            heroIconLocation = (heroIconLocation[0], heroIconLocation[1]+ (item_picture_size[1]/2))
+            draw.text(((heroIconLocation[0])-draw.textlength(f'HERO DAMAGE: {player.hero_damage}',font=text_font), heroIconLocation[1]), f'HERO DAMAGE: {player.hero_damage}', font=text_font, fill=title_color)
+            heroIconLocation = (heroIconLocation[0], heroIconLocation[1]+ (item_picture_size[1]/2))
+            draw.text(((heroIconLocation[0])-draw.textlength(f'LAST HITS / DENIES: {player.last_hits}/{player.denies}',font=text_font), heroIconLocation[1]), f'LAST HITS / DENIES: {player.last_hits}/{player.denies}', font=text_font, fill=title_color)                        
             direy += 5
 
     image_bytes = io.BytesIO()
