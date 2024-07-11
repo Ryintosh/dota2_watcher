@@ -21,6 +21,7 @@ services:
       - secrets:/usr/app/src/config  # Mounting the secrets directory
       - ./mysql-init:/docker-entrypoint-initdb.d
       - ./mysql-init/my.cnf:/etc/mysql/conf.d/my.cnf:ro
+      - mysql-data:/var/lib/mysql
     ports:
       - "3307:3307"  # Expose MySQL port
     healthcheck:
@@ -36,3 +37,4 @@ volumes:
       type: none
       device: ${PWD}/config
       o: bind
+  mysql-data:
